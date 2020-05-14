@@ -22,7 +22,7 @@ const delet = async (id)=> {
 
 const create = async (user)=> {
   const newUser = await UserModel.create(user);
-  if(!newUser) throw Boom.notFound(`User not created`) 
+  if(!newUser) throw Boom.notFound(`User not created`);
   return newUser;
 };
 

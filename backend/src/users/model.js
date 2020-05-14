@@ -6,7 +6,7 @@ User.findById = (id)=> {
   return db('user').where({ id }).first();
 }
 
-User.findAll = (id)=> {
+User.findAll = ()=> {
   return db('user');
 }
 
@@ -19,7 +19,6 @@ User.create = async (user)=> {
     const [id] = await db('user')
                          .insert({name: `${name}`, 
                                   email: `${email}` })
-
     return User.findById(id);
 }
 

@@ -23,7 +23,7 @@ UserController.create = async(request, reply)=>{
    const { body } = request;
    const user = {...body}
    const response = await UserService.create(user);
-   return reply.json(response);
+   return reply.status(201).json(response);
 }
 
 UserController.update = async(request, reply)=>{
