@@ -1,0 +1,40 @@
+version: '3.7'
+services:
+    mysql:
+        container_name: mysql
+        image: mysql
+        environment:
+          MYSQL_DATABASE: data
+          MYSQL_ROOT_USER: root
+          MYSQL_ROOT_PASSWORD: root
+        ports: 
+         - 3306:3306
+        networks: 
+            - network
+    backend:
+        container_name: backend
+        build:
+            context: ./backend
+        ports:
+            - "3001:3001"
+        networks: 
+            - network
+        volumes: 
+            - ./backend:/usr/src/app
+        depends_on:
+            - "mysql"
+    frontend:
+        container_name: frontend
+        build:
+            context: ./frontend
+        ports:
+            - "3000:3000"
+        networks: 
+            - network
+        volumes: 
+            - ./frontend:/usr/src/app
+        depends_on:
+            - "backend"
+networks: 
+    network:
+        driver: bridge
